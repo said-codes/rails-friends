@@ -1,0 +1,23 @@
+<% if user_signed_in? %>
+<div id="friends">
+  <table class="table table-light table-striped-columns table-hover">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Twitter</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <% @friends.each do |friend| %>
+    <%= render friend %>
+  <% end %>
+</table>
+    <%= link_to "New friend", new_friend_path, class:'btn btn-secondary' %>
+</div>
+<% else %>
+<p> Home page</p>
+<% end %>
+

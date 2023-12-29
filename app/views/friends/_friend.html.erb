@@ -1,0 +1,41 @@
+<tbody class="">
+  <% if friend.user == current_user %>
+    <tr>
+      <% unless controller_name == 'friends' && action_name == 'show' %>
+      <td scope="row"><%= friend.first_name %></td>
+      <td><%= friend.last_name %></td>
+      <td><%= friend.email %></td>
+      <td><%= friend.phone %></td>
+      <td><%= friend.twitter %></td>
+      <td>
+        <%= link_to "Show", friend , class:'btn btn-secondary' %>
+
+        <% if friend.user == current_user %>
+        <%= link_to "Edit", edit_friend_path(friend),class:'btn btn-secondary' %>
+        <%= button_to "Delete", friend , method: :delete, class:'btn btn-danger' %>
+        <%end %>
+
+      </td>
+      <% end %>
+    </tr>
+    <% end %>
+</tbody>
+
+
+<% unless controller_name == 'friends' && action_name == 'index' %>
+
+<div class="card detail" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= friend.first_name  %> <%= friend.last_name %></h5>
+    <p class="card-text">Email : <%= friend.email %>.</p>
+    <p class="card-text">Phone Number : <%= friend.phone %>.</p>
+    <p class="card-text">Twitter : <%= friend.twitter %>.</p>
+  <%= link_to "Back", friends_path,class:'btn btn-dark' %> 
+  <% if friend.user == current_user %>
+  <%= link_to "Edit", edit_friend_path(@friend),class:'btn btn-secondary' %> 
+  <%= button_to "Destroy", @friend, method: :delete , class:'btn btn-danger' %>
+  <% end %>
+
+  </div>
+</div>
+<% end %>
